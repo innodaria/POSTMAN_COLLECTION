@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "f7f7b028-a8c6-4128-828a-174923d59e8b",
+		"name": "Авторизация",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Авторизация по электронной почте",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"\",\n  \"password\": \"1234\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/user/signin/email",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"signin",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация по номеру телефона",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e784accd-7408-47f2-800c-66f5d0bf3c47",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"pm.environment.set(\"access_token\", data.access_token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\": \"89612203931\",\n    \"password\": \"12345\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/auth/phone",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"auth",
+						"phone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация по ПИН-коду/отпечатку",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"refresh_token\": \"eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJSRUZSRVNIIiwiZXhwIjoxNTY1NDI5ODY2LCJEYXRhIjp7InVzZXJJZCI6LTQ1fSwic3ViIjoiLTQ1In0.k4yJ6_ITfASYMsqJBvqgjnuIZUqOPE1YKfTQcVgrA9Aa1P7c9TAvlhYLARbJpdNbEyMnyZ8QBfxypO43lAcgdw\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/user/signin/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"signin",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Список пользователей",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
